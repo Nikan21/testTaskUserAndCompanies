@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Header, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { RegistrateUserDto } from 'src/auth/dto/registrate-user.dto';
+import { LoginUserDto } from 'src/auth/dto/login-user.dto';
 import { AuthService } from './auth.service';
 
 @Controller()
@@ -21,7 +21,7 @@ export class AuthController {
     @Post('/signup')
     @HttpCode(HttpStatus.CREATED)
     @Header('Content-Type', 'application/json')
-    registration(@Body() createUserDto: CreateUserDto) {
-        return this.authService.registrateUser(createUserDto)
+    registration(@Body() registrateUserDto: RegistrateUserDto) {
+        return this.authService.registrateUser(registrateUserDto)
     }
 }
