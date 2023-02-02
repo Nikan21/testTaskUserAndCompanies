@@ -5,5 +5,4 @@ export class CreateCompanyDto {
     readonly numberOfEmployess: number;
     readonly description: string;
     readonly type: string;
-    readonly userId: number
 } 
