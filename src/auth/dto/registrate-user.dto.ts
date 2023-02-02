@@ -1,10 +1,10 @@
 export class RegistrateUserDto {
-    firstName: string;
-    lastName: string;
-    nickname: string;
-    phoneNumber: number;
-    position: string;
-    description: string;
-    email: string;
-    password: string;
+    readonly firstName: string;
+    readonly lastName: string;
+    readonly nickname: string;
+    readonly phoneNumber: number;
+    readonly position: string;
+    readonly description: string;
+    readonly email: string;
+    readonly password: string;
 }
