@@ -7,13 +7,13 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 export class CompaniesService {
     constructor(@InjectModel(Company) private companyRepository: typeof Company) {}
 
-    async getAllCompanies() {
-        const companies = await this.companyRepository.findAll({include: {all: true}})
+    async getAllCompanies(id) {
+        const companies = await this.companyRepository.findAll({include: {all: true}, where: {userId: id}})
         return companies
     }
 
-    async createCompany(createCompanyDto: CreateCompanyDto) {
-        const company = await this.companyRepository.create(createCompanyDto)
+    async createCompany(createCompanyDto: CreateCompanyDto, id) {
+        const company = await this.companyRepository.create({...createCompanyDto, userId: id})
         return company;
     }
 }
