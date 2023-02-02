@@ -42,6 +42,6 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: true})
     password: string;
 
-/*     @HasMany(() => Company)
-    companies: Company[]; */
+    @HasMany(() => Company)
+    companies: Company[];
 }

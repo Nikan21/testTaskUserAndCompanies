@@ -8,6 +8,7 @@ interface CompanyCreationAttrs {
     numberOfEmployess: number;
     description: string;
     type: string;
+    userId: number
 }
 
 @Table({tableName: 'companies'})
@@ -34,9 +35,10 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: true})
     type: string;
 
-/*     @ForeignKey(() => User)
-    @Column
+    @ForeignKey(() => User)
+    @Column({type: DataType.INTEGER})
     userId: number;
+    
     @BelongsTo(() => User)
-    user: User; */
+    user: User;
 }
