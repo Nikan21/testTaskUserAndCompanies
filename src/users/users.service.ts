@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -10,6 +11,14 @@ export class UsersService {
 
     async getUserById(id) {
         const user = this.userRepository.findOne({where: {id}})
+        return user
+    }
+
+    async updateUserById(id, updateUserDto: UpdateUserDto) {
+        const user = await this.userRepository.update(
+            {...updateUserDto},
+            {where: {id}, returning: true} 
+        )
         return user
     }
 
