@@ -9,6 +9,12 @@ import * as bcrypt from 'bcryptjs';
 export class AuthService {
     constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
+    async logOutUser() {
+        return {
+            token: ''
+        }
+    }
+
     async loginUser(loginUserDto: LoginUserDto) {
         const user = await this.validateUser(loginUserDto)
         return this.generateToken(user)
