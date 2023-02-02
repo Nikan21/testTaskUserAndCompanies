@@ -1,4 +1,5 @@
-import { Model, Column, DataType, Table } from "sequelize-typescript";
+import { Model, Column, DataType, Table, HasMany } from "sequelize-typescript";
+import { Company } from "src/companies/companies.model";
 
 interface UserCreationAttrs {
     firstName: string;
@@ -23,7 +24,7 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: true})
     lastName: string;
 
-    @Column({type: DataType.STRING, allowNull: true})
+    @Column({type: DataType.STRING, unique: true, allowNull: true})
     nickname: string;
 
     @Column({type: DataType.INTEGER, unique: true, allowNull: true})
@@ -40,4 +41,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @Column({type: DataType.STRING, allowNull: true})
     password: string;
+
+/*     @HasMany(() => Company)
+    companies: Company[]; */
 }
