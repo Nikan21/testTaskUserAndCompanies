@@ -6,9 +6,9 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 export class CompaniesController {
     constructor(private readonly companiesService: CompaniesService) {}
 
-    @Get('componies')
+    @Get('companies')
     getAll() {
-
+        return this.companiesService.getAllCompanies()
     }
 
     @Post('/createcompany')
