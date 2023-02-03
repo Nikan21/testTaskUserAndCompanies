@@ -41,4 +41,4 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
     
     @BelongsTo(() => User)
     user: User;
-}
+} 

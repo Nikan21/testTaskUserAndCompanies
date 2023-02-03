@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class RegistrateUserDto {
     @IsNotEmpty({message: 'Must be not empty'})
@@ -14,8 +14,8 @@ export class RegistrateUserDto {
     readonly nickname: string;
 
     @IsNotEmpty({message: 'Must be not empty'})
-    @IsNumber({}, {message: 'Must be a number'})
-    readonly phoneNumber: number;
+    @IsString({message: 'Must be a string'})
+    readonly phoneNumber: string;
 
     @IsNotEmpty({message: 'Must be not empty'})
     @IsString({message: 'Must be a string'})

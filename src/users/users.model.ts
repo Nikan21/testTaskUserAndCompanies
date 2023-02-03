@@ -5,7 +5,7 @@ interface UserCreationAttrs {
     firstName: string;
     lastName: string;
     nickname: string;
-    phoneNumber: number;
+    phoneNumber: string;
     position: string;
     description: string;
     email: string;
@@ -27,8 +27,8 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.STRING, unique: true, allowNull: true})
     nickname: string;
 
-    @Column({type: DataType.INTEGER, unique: true, allowNull: true})
-    phoneNumber: number;
+    @Column({type: DataType.STRING, unique: true, allowNull: true})
+    phoneNumber: string;
 
     @Column({type: DataType.STRING, allowNull: true})
     position: string;
