@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { UsersService } from 'src/users/users.service';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
@@ -17,8 +18,9 @@ export class CompaniesController {
         const id = await this.usersService.getCurrentUserId(req)
         return this.companiesService.getAllCompanies(id)
     }
-        
+    
     @UseGuards(JwtAuthGuard)
+    @UsePipes(ValidationPipe)
     @Post('/createcompany')
     async create(@Body() createCompanyDto: CreateCompanyDto, @Req() req: Request) {
         const id = await this.usersService.getCurrentUserId(req)
@@ -32,6 +34,8 @@ export class CompaniesController {
     }
 
     @UseGuards(JwtAuthGuard)
+    //Can't understand why in this method whit validation error
+/*     @UsePipes(ValidationPipe) */
     @Patch('company/:id')
     update(@Param('id') id, @Body() updateCompanyDto: UpdateCompanyDto) {
         return this.companiesService.updateCompanyById(id, updateCompanyDto)
