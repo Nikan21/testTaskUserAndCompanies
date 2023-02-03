@@ -1,6 +1,6 @@
 import styles from './authHeader.module.sass'
 
-export default function authHeader() {
+export default function AuthHeader() {
     return (
         <div className={styles.headerWrapper}>
             <div className={styles.profile}>Profile</div>
