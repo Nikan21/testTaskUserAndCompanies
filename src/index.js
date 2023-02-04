@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import store from './store';
 import {Provider} from 'react-redux'
+import store from './store';
 import HandlerRouteError from './handlerRouterError'
 import FirstPage from './Components/fistPage/firstPage'
-import StartPage from './Components/startPage/startPage';
+import MainPage from './Components/mainPage/mainPage';
 import AnonymPage from './Components/anonymPage/anonymPage'
 import SignUpPage from './Components/signUpPage/signUpPage';
 import SignInPage from './Components/signInPage/signInPage';
+import ProfilePage from './Components/profilePage/profilePage';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/main',
-    element: <StartPage />,
+    element: <MainPage />,
     errorElement: <HandlerRouteError />
   },
   {
@@ -36,14 +37,18 @@ const router = createBrowserRouter([
     path: '/signin',
     element: <SignInPage />,
     errorElement: <HandlerRouteError />
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage />,
+    errorElement: <HandlerRouteError />
   }
+  
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
 );
