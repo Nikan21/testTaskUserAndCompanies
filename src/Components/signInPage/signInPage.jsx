@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import {useForm} from 'react-hook-form'
-import {useSelector, useDispatch} from 'react-redux'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux'
+import { saveToken } from '../../slices/tokenSlice';
 import styles from './signIn.module.sass'
-import { saveToken } from '../../tokenSlice';
 
 export default function SignInPage() {
     const currentToken = useSelector(state => state.token.value)

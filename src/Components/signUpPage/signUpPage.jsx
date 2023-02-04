@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
-import { saveToken } from '../../tokenSlice';
+import { saveToken } from '../../slices/tokenSlice';
 import styles from './signUp.module.sass'
 
 export default function SignUpPage() {
