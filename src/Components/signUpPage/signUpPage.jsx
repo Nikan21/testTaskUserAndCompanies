@@ -2,25 +2,29 @@ import { useEffect } from 'react'
 import {useForm} from 'react-hook-form'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import styles from './signUp.module.sass'
 import { useNavigate } from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import { saveToken } from '../../tokenSlice';
+import styles from './signUp.module.sass'
 
 export default function SignUpPage() {
+    const dispatch = useDispatch()
+    
     const navigate = useNavigate()
-
+    
     const schema = yup.object({
         firstName: yup.string().required('Firstname must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters'),
         lastName: yup.string().required('Lastname must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters'),
         nickname: yup.string().required('Nickname must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters'),
         phoneNumber: yup.string().required('Phone number must be required').matches(/^\d+$/, "Only numbers").max(10, 'Not more than 10 numbers'),
         position: yup.string().required('Position must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters'),
-        description: yup.string().required('Description must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters'),
+        description: yup.string().required('Description must be required').max(20, 'Not more than 20 letters'),
         email: yup.string().required('Lastname must be required').email('Must be email formate'),
-        password: yup.string().required('Description must be required').matches(/^[A-Z][a-z]+$/, "Only letters").max(10, 'Not more than 10 letters')
+        password: yup.string().required('Description must be required').max(10, 'Not more than 10 letters')
     }).required()
 
     const {setFocus, reset, register, handleSubmit, formState, formState: { errors }} = useForm({resolver: yupResolver(schema)})
-
+    
     const sendData = async (data) => {
         
         const response = await fetch('http://localhost:5000/signup', {
@@ -30,11 +34,10 @@ export default function SignUpPage() {
             body: JSON.stringify(data)
         })
         const dataFromServer = await response.json()
-        console.log(dataFromServer)
         const token = dataFromServer.token
-
+        
         if (response.ok) {
-            console.log(12)
+            dispatch(saveToken(token))
             navigate("/main")
         }
     }
@@ -44,7 +47,7 @@ export default function SignUpPage() {
             reset()
         }
     })
-
+    
     useEffect(() => {
         setFocus('firstName')
     }, [setFocus])
