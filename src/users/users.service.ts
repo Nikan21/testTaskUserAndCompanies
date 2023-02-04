@@ -4,6 +4,7 @@ import { RegistrateUserDto } from '../auth/dto/registrate-user.dto';
 import { User } from './users.model';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -15,8 +16,10 @@ export class UsersService {
     }
 
     async updateUserById(id, updateUserDto: UpdateUserDto) {
+        const hashPassword = await bcrypt.hash(updateUserDto.password, 5)
+
         const user = await this.userRepository.update(
-            {...updateUserDto},
+            {...updateUserDto, password: hashPassword},
             {where: {id}, returning: true} 
         )
         return user
