@@ -34,7 +34,7 @@ export class CompaniesController {
     }
 
     @UseGuards(JwtAuthGuard)
-    //Can't understand why in this method whit validation error
+    //Can't understand why in this method with validation error
 /*     @UsePipes(ValidationPipe) */
     @Patch('company/:id')
     update(@Param('id') id, @Body() updateCompanyDto: UpdateCompanyDto) {
