@@ -4,11 +4,12 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UsersService } from './users.service';
 import { Request } from 'express';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
+import { JwtService } from '@nestjs/jwt';
 
 
 @Controller('profile')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(private readonly usersService: UsersService, private jwtService: JwtService) {}
         
     @UseGuards(JwtAuthGuard)
     @UsePipes(ValidationPipe)
