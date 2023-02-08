@@ -3,13 +3,9 @@ import {useForm} from 'react-hook-form'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux'
-import { saveToken } from '../../slices/tokenSlice';
 import styles from './signIn.module.sass'
 
 export default function SignInPage() {
-    const currentToken = useSelector(state => state.token.value)
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const schema = yup.object({
@@ -18,23 +14,18 @@ export default function SignInPage() {
     }).required()
 
     const {setFocus, reset, register, handleSubmit, formState, formState: { errors }} = useForm({resolver: yupResolver(schema)})
-    const encodeToken = encodeURIComponent(currentToken)
 
     const sendData = async (data) => {
         
         const response = await fetch('http://localhost:5000/signin', {
             method: 'POST',
+            credentials: 'include',
             mode: 'cors',
-            headers: new Headers({ 
-                'Content-Type': 'application/json', 
-                'Authorization': `Bearer ${encodeToken}`}),
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         })
-        const dataFromServer = await response.json()
-        const token = dataFromServer.token
-        
+
         if (response.ok) {
-            dispatch(saveToken(token))
             navigate("/main")
         }
     }

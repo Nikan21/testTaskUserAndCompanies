@@ -3,13 +3,9 @@ import {useForm} from 'react-hook-form'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
-import { saveToken } from '../../slices/tokenSlice';
 import styles from './signUp.module.sass'
 
 export default function SignUpPage() {
-    const dispatch = useDispatch()
-    
     const navigate = useNavigate()
     
     const schema = yup.object({
@@ -26,18 +22,16 @@ export default function SignUpPage() {
     const {setFocus, reset, register, handleSubmit, formState, formState: { errors }} = useForm({resolver: yupResolver(schema)})
     
     const sendData = async (data) => {
-        
+
         const response = await fetch('http://localhost:5000/signup', {
             method: 'POST',
+            credentials: 'include',
             mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         })
-        const dataFromServer = await response.json()
-        const token = dataFromServer.token
         
         if (response.ok) {
-            dispatch(saveToken(token))
             navigate("/main")
         }
     }
