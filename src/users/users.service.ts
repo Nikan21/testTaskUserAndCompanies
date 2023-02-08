@@ -36,7 +36,7 @@ export class UsersService {
     }
 
     async getCurrentUserId(req) {
-        const token = await req.headers.authorization.split(' ')[1]
+        const token = await req.cookies.token
         const dataInToken = await this.jwtService.verify(token)
         const id = dataInToken['id']
         return id
