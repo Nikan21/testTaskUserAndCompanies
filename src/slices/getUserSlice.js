@@ -1,13 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const getUserData = createAsyncThunk('get/user', async (token) => {
-    const encodeToken = await encodeURIComponent(token)
+export const getUserData = createAsyncThunk('get/user', async () => {
     const response = await fetch('http://localhost:5000/profile', {
         method: 'GET',
+        credentials: 'include',
         mode: 'cors',
-        headers: new Headers({ 
-            'Content-Type': 'application/json', 
-            'Authorization': `Bearer ${encodeToken}`}),
+        headers: new Headers({'Content-Type': 'application/json'}),
     })
     const dataFromServer = await response.json()
     return dataFromServer
@@ -18,7 +16,7 @@ export const getUserSlice = createSlice({
     initialState: {
         userData: [],
         status: 'idle',
-        error: null
+        error: null,
     },
     reducers: {},
     extraReducers(builder) {
