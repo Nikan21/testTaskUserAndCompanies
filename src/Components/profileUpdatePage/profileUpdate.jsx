@@ -6,7 +6,6 @@ import styles from './profileUpdate.module.sass'
 
 export default function ProfileUpdatePage() {
     const userData = useSelector(state => state.getUser.userData[0])
-    const status = useSelector(state => state.getUser.statusPatch)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
