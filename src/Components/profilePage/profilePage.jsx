@@ -1,24 +1,24 @@
-import {Fragment, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {getUserData} from '../../slices/getUserSlice'
-import LoadingPage from '../loadingPage/loadingPage'
-import GoodPage from './fulfilledPage'
+import {Fragment} from 'react'
+import {useSelector} from 'react-redux'
+import { Link } from 'react-router-dom'
+import Header from '../Header/header'
+import styles from './profile.module.sass'
 
 export default function ProfilePage() {
-    const dispatch = useDispatch()
-    const status = useSelector(state => state.getUser.status)
     const userData = useSelector(state => state.getUser.userData[0])
-    console.log(userData)
-
-    useEffect(() => {
-        if (status === 'idle') {
-            dispatch(getUserData())
-        }
-    }, [dispatch, status])
-
+    
     return(
     <Fragment>
-        {userData ? <GoodPage /> : <LoadingPage />}
+        <Header />
+        <section className={styles.wrapperProfile}>
+        <h1 className={styles.nickname}>Profile: {userData.nickname}</h1>
+        <p className={styles.otherData}>Full name: {userData.firstName} {userData.lastName}</p>
+        <p className={styles.otherData}>Phone number: {userData.phoneNumber}</p>
+        <p className={styles.otherData}>Position: {userData.position}</p>
+        <p className={styles.otherData}>Description: {userData.description}</p>
+        <p className={styles.otherData}>Email: {userData.email}</p>
+        <Link className={styles.button} to='/profile/update'>Update information</Link>
+        </section>
     </Fragment>
     )
 }
