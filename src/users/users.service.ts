@@ -22,7 +22,7 @@ export class UsersService {
             {...updateUserDto, password: hashPassword},
             {where: {id}, returning: true} 
         )
-        return user
+        return user[1][0]
     }
 
     async getUserByEmail(email: string) {
