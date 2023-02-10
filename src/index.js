@@ -9,7 +9,8 @@ import MainPage from './Components/mainPage/mainPage';
 import AnonymPage from './Components/anonymPage/anonymPage'
 import SignUpPage from './Components/signUpPage/signUpPage';
 import SignInPage from './Components/signInPage/signInPage';
-import ProfilePage from './Components/profilePage/profilePage';
+import FulfilledProfilePage from './Components/profilePage/fulfilledProfilePage';
+import FulfilledProfileUpdatePage from './Components/profileUpdatePage/fulfilledUpdatePage';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/profile',
-    element: <ProfilePage />,
+    element: <FulfilledProfilePage />,
+    errorElement: <HandlerRouteError />
+  },
+  {
+    path: '/profile/update',
+    element: <FulfilledProfileUpdatePage />,
     errorElement: <HandlerRouteError />
   }
   
