@@ -33,10 +33,10 @@ export const getUserSlice = createSlice({
                 state.updatedUserData.shift()
                 state.updatedUserData.push(action.payload)
             })
-            .addCase(updateUserData.rejected, (state, action) => {
-                state.statusPatch = 'rejected'
-                state.errorPatch = action.error.message
+            .addCase(logOut.fulfilled, (state, action) => {
+                state.statusGet = 'idle'
             })
+            
     }
 })
 
@@ -61,6 +61,15 @@ export const updateUserData = createAsyncThunk('update/user', async (data) => {
     })
     const dataFromServer = await response.json()
     return dataFromServer
+})
+
+export const logOut = createAsyncThunk('logout', async () => {
+    await fetch('http://localhost:5000/logout', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+    })
 })
 
 export default getUserSlice.reducer
