@@ -14,8 +14,6 @@ export default function FulfilledCompaniesPage() {
             dispatch(getCompaniesData())
         }
     }, [dispatch, status])
-    
-    console.log(companiesData)
 
     return(
         <Fragment>
