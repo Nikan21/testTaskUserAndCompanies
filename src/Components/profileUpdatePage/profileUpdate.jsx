@@ -78,7 +78,7 @@ export default function ProfileUpdatePage() {
             </div>
             <div className={styles.inputWrapper}>
             <label className={styles.label} htmlFor="password">Password:</label>
-            <input className={styles.input} type="text" id="password" name="password" value={password} onChange={onPasswordChange} />
+            <input className={styles.input} type="password" id="password" name="password" value={password} onChange={onPasswordChange} />
             </div>
         </form>
         <button className={styles.button} type="button" onClick={onSaveUpdatedData}>
