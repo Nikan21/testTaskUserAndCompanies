@@ -12,6 +12,7 @@ import SignInPage from './Components/signInPage/signInPage';
 import FulfilledProfilePage from './Components/profilePage/fulfilledProfilePage';
 import FulfilledProfileUpdatePage from './Components/profileUpdatePage/fulfilledUpdatePage';
 import './index.css';
+import FulfilledCompaniesPage from './Components/companiesPage/fullfiledCompaniesPage';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,12 @@ const router = createBrowserRouter([
   {
     path: '/profile/update',
     element: <FulfilledProfileUpdatePage />,
+    errorElement: <HandlerRouteError />
+  }
+  ,
+  {
+    path: '/companies',
+    element: <FulfilledCompaniesPage />,
     errorElement: <HandlerRouteError />
   }
   
