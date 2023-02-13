@@ -10,9 +10,6 @@ export default function FulfilledProfilePage() {
     const userData = useSelector(state => state.getUser.userData[0])
     const updatedUserData = useSelector(state => state.getUser.updatedUserData[0])
 
-    console.log(userData)
-    console.log(updatedUserData)
-
     useEffect(() => {
         if (status === 'idle') {
             dispatch(getUserData())
