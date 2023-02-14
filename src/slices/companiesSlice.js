@@ -7,6 +7,8 @@ export const companiesSlice = createSlice({
         statusGet: 'idle',
         errorGet: null,
         updatedCompaniesData: [],
+        statusPost: 'idle',
+        errorPost: null,
         statusPatch: 'idle',
         errorPatch: null,
         statusDelete: 'idle',
@@ -60,6 +62,18 @@ export const getCompaniesData = createAsyncThunk('get/companies', async () => {
         credentials: 'include',
         mode: 'cors',
         headers: {'Content-Type': 'application/json'},
+    })
+    const dataFromServer = await response.json()
+    return dataFromServer
+})
+
+export const createCompany = createAsyncThunk('create/company', async(data) => {
+    const response = await fetch(`http://localhost:5000/createcompany`, {
+        method: 'POST',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
     })
     const dataFromServer = await response.json()
     return dataFromServer
