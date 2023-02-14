@@ -5,7 +5,7 @@ interface CompanyCreationAttrs {
     name: string;
     address: string;
     serviceOfActivity: string;
-    numberOfEmployess: number;
+    numberOfEmployess: string;
     description: string;
     type: string;
     userId: number
@@ -26,8 +26,8 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: true})
     serviceOfActivity: string;
 
-    @Column({type: DataType.INTEGER, allowNull: true})
-    numberOfEmployess: number;
+    @Column({type: DataType.STRING, allowNull: true})
+    numberOfEmployess: string;
 
     @Column({type: DataType.STRING, allowNull: true})
     description: string;

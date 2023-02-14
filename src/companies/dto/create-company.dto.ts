@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class CreateCompanyDto {
     @IsNotEmpty({message: 'Must be not empty'})
@@ -14,8 +14,8 @@ export class CreateCompanyDto {
     readonly serviceOfActivity: string;
 
     @IsNotEmpty({message: 'Must be not empty'})
-    @IsNumber({}, {message: 'Must be a number'})
-    readonly numberOfEmployess: number;
+    @IsString({message: 'Must be a string'})
+    readonly numberOfEmployess: string;
 
     @IsNotEmpty({message: 'Must be not empty'})
     @IsString({message: 'Must be a string'})
