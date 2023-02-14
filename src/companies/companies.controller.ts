@@ -14,7 +14,6 @@ export class CompaniesController {
     @UseGuards(JwtAuthGuard)
     @Get('companies')
     async getAll(@Req() req: Request) {
-        console.log(req.headers)
         const id = await this.usersService.getCurrentUserId(req)
         return this.companiesService.getAllCompanies(id)
     }
@@ -27,11 +26,6 @@ export class CompaniesController {
         return this.companiesService.createCompany(createCompanyDto, id)
     }
 
-    @UseGuards(JwtAuthGuard)
-    @Get('company/:id')
-    get(@Param('id') id) {
-        return this.companiesService.getCompanyById(id)
-    }
 
     @UseGuards(JwtAuthGuard)
     //Can't understand why in this method with validation error
