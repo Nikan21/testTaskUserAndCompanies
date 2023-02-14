@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
-import {useParams, Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useParams, useNavigate, Link} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import { removeCompany } from '../../slices/companiesSlice'
 import Header from '../Header/header'
 import styles from './company.module.sass'
 
@@ -8,7 +9,13 @@ export default function CompanyPage() {
     const params = useParams();
     const companyId = +params.id
     const company = useSelector(state => state.getCompanies.companiesData[0]).find(company => company.id === companyId)
-    console.log(company)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
+    const onDeleteCompany = (e) => {
+        dispatch(removeCompany(companyId))
+        navigate('/companies')
+    }
 
     return(
         <Fragment>
@@ -24,8 +31,8 @@ export default function CompanyPage() {
             <p className={styles.info}>Type: {company.type}</p>
             </div>
             <div className={styles.buttonWrapper}>
-                <button className={styles.button}>Update information</button>
-                <button className={styles.button}>Delete company</button>
+                <Link className={styles.button} to={`/company/update/${params.id}`}>Update information</Link>
+                <button className={styles.button} onClick={onDeleteCompany}>Delete company</button>
             </div>
             </section>
             <div className={styles.backButtonWrapper}>
