@@ -46,7 +46,7 @@ export default function ProfileUpdatePage() {
 
     return(
         <Fragment>
-        <h1 className={styles.headSetence}>Update your information</h1>
+        <h1 className={styles.headSentence}>Update your information</h1>
         <form className={styles.form}>
             <div className={styles.inputWrapper}>
             <label className={styles.label} htmlFor="firstName">First name:</label>
@@ -86,5 +86,4 @@ export default function ProfileUpdatePage() {
         </button>
         </Fragment>
     )
-
 }
