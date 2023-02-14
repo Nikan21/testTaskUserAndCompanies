@@ -15,6 +15,7 @@ import './index.css';
 import FulfilledCompaniesPage from './Components/companiesPage/fullfiledCompaniesPage';
 import FulfilledCompanyPage from './Components/companyPage/fulfilledCompanyPage';
 import FulfilledUpdateCompanyPage from './Components/updateCompanyPage/fulfilledUpdateCompanyPage';
+import CreateCompanyPage from './Components/createCompanyPage/createCompanyPage';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
   {
     path: '/company/update/:id',
     element: <FulfilledUpdateCompanyPage />,
+    errorElement: <HandlerRouteError />
+  },
+  {
+    path: '/createcompany',
+    element: <CreateCompanyPage />,
     errorElement: <HandlerRouteError />
   }
   
